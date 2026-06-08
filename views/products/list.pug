@@ -10,7 +10,8 @@ block content
           p Price: $#{product.price.toFixed(2)}
           if product.description
             p= product.description
-          p Added: #{product.created_at.toDateString()}
+          - const dateStr = typeof product.created_at === 'string' ? new Date(product.created_at).toDateString() : product.created_at.toDateString()
+          p Added: #{dateStr}
   else
     .notice
       p No products have been added yet.

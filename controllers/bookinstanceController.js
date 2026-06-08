@@ -3,19 +3,36 @@ const BookInstance = require("../models/bookInstance");
 // Display list of all BookInstances.
 exports.bookinstance_list = async (req, res, next) => {
   try {
+    if (!global.mongodbConnected) {
+      return res.render("catalog/bookinstance_list", {
+        title: "BookInstance List",
+        bookinstance_list: [],
+      });
+    }
+
     const list_bookinstances = await BookInstance.find().populate("book").exec();
     res.render("catalog/bookinstance_list", {
       title: "BookInstance List",
       bookinstance_list: list_bookinstances,
     });
   } catch (err) {
-    return next(err);
+    console.error("Error in bookinstance list:", err.message);
+    return res.render("catalog/bookinstance_list", {
+      title: "BookInstance List",
+      bookinstance_list: [],
+    });
   }
 };
 
 // Display detail page for a specific BookInstance.
 exports.bookinstance_detail = async (req, res, next) => {
   try {
+    if (!global.mongodbConnected) {
+      const err = new Error("BookInstance not found");
+      err.status = 404;
+      return next(err);
+    }
+
     const bookinstance = await BookInstance.findById(req.params.id).populate("book").exec();
     if (bookinstance == null) {
       const err = new Error("BookInstance not found");

@@ -4,16 +4,27 @@ const Book = require("../models/book");
 // Display list of all Authors.
 exports.author_list = async (req, res, next) => {
   try {
+    if (!global.mongodbConnected) {
+      return res.render("catalog/author_list", { title: "Author List", author_list: [] });
+    }
+
     const list_authors = await Author.find().sort([['family_name', 'ascending']]).exec();
     res.render("catalog/author_list", { title: "Author List", author_list: list_authors });
   } catch (err) {
-    return next(err);
+    console.error("Error in author list:", err.message);
+    return res.render("catalog/author_list", { title: "Author List", author_list: [] });
   }
 };
 
 // Display detail page for a specific Author.
 exports.author_detail = async (req, res, next) => {
   try {
+    if (!global.mongodbConnected) {
+      const err = new Error("Author not found");
+      err.status = 404;
+      return next(err);
+    }
+
     const [author, author_books] = await Promise.all([
       Author.findById(req.params.id).exec(),
       Book.find({ author: req.params.id }, "title summary").exec(),

@@ -4,16 +4,27 @@ const Book = require("../models/book");
 // Display list of all Genre.
 exports.genre_list = async (req, res, next) => {
   try {
+    if (!global.mongodbConnected) {
+      return res.render("catalog/genre_list", { title: "Genre List", genre_list: [] });
+    }
+
     const list_genres = await Genre.find().sort("name").exec();
     res.render("catalog/genre_list", { title: "Genre List", genre_list: list_genres });
   } catch (err) {
-    return next(err);
+    console.error("Error in genre list:", err.message);
+    return res.render("catalog/genre_list", { title: "Genre List", genre_list: [] });
   }
 };
 
 // Display detail page for a specific Genre.
 exports.genre_detail = async (req, res, next) => {
   try {
+    if (!global.mongodbConnected) {
+      const err = new Error("Genre not found");
+      err.status = 404;
+      return next(err);
+    }
+
     const [genre, genre_books] = await Promise.all([
       Genre.findById(req.params.id).exec(),
       Book.find({ genre: req.params.id }).populate("author").exec(),

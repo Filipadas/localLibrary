@@ -1,0 +1,23 @@
+[
+  {
+    "_id": 1,
+    "name": "Test Book",
+    "price": 29.99,
+    "description": "A test book description",
+    "created_at": "2026-06-08T23:49:24.017Z"
+  },
+  {
+    "_id": 2,
+    "name": "JavaScript Guide",
+    "price": 45.5,
+    "description": "Complete guide to JavaScript programming",
+    "created_at": "2026-06-08T23:50:13.343Z"
+  },
+  {
+    "_id": 3,
+    "name": "Python Basics",
+    "price": 35.99,
+    "description": "Learn Python programming from scratch",
+    "created_at": "2026-06-08T23:54:30.448Z"
+  }
+]

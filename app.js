@@ -13,18 +13,28 @@ var app = express();
 
 //Set up mongoose connection
 var mongoose = require("mongoose");
-var mongoDB = process.env.MONGODB_URI || "mongodb+srv://dbUser:I014dzDxzFXjELvc@cluster0.gw8awn4.mongodb.net/local_library?retryWrites=true&w=majority";
+var mongoDB = process.env.MONGODB_URI || "mongodb://localhost:27017/local_library";
 mongoose.set("strictQuery", false);
 mongoose.connect(mongoDB, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,
-  connectTimeoutMS: 10000,
+  serverSelectionTimeoutMS: 2000,
+  connectTimeoutMS: 5000,
 })
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+  .then(() => {
+    console.log("MongoDB connected");
+    global.mongodbConnected = true;
+  })
+  .catch((err) => {
+    console.error("MongoDB connection error:", err.message);
+    console.log("Note: Make sure MongoDB is running locally on port 27017");
+    console.log("Using fallback database for catalog");
+    global.mongodbConnected = false;
+  });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.on("connected", () => {
+  console.log("Mongoose default connection opened");
+  global.mongodbConnected = true;
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
