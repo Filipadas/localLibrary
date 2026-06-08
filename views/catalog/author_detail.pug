@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1= title
+  p
+    strong Born:
+    |  #{author.date_of_birth ? author.date_of_birth.toDateString() : 'Unknown'}
+  p
+    strong Died:
+    |  #{author.date_of_death ? author.date_of_death.toDateString() : 'Unknown'}
+  h2 Books
+  if author_books.length
+    ul
+      each book in author_books
+        li
+          a(href=book.url)= book.title
+  else
+    p No books found for this author.

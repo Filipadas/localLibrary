@@ -1,0 +1,18 @@
+extends ../layout
+
+block content
+  h1= title
+  if products.length
+    ul.card-list
+      each product in products
+        li.card
+          h2= product.name
+          p Price: $#{product.price.toFixed(2)}
+          if product.description
+            p= product.description
+          p Added: #{product.created_at.toDateString()}
+  else
+    .notice
+      p No products have been added yet.
+  p
+    a(href='/products/add') Add a new product

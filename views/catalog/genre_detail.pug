@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  h1= title
+  p
+    strong Genre:
+    |  #{genre.name}
+  h2 Books in this genre
+  if genre_books.length
+    ul
+      each book in genre_books
+        li
+          a(href=book.url)= book.title
+          |  by #{book.author.name}
+  else
+    p No books found for this genre.

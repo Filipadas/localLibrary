@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  h1= title
+  p
+    strong Author:
+    |  
+    a(href=book.author.url)= book.author.name
+  if book.genre.length
+    p
+      strong Genre:
+      each genre, i in book.genre
+        = genre.name
+        if i != book.genre.length - 1
+          | , 
+  p
+    strong Summary:
+  p= book.summary
+  h2 Book instances
+  if book_instance_list.length
+    ul
+      each instance in book_instance_list
+        li
+          a(href=instance.url)= instance.imprint
+          |  (#{instance.status})
+  else
+    p No copies available.

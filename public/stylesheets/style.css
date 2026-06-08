@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f3f7fb;
+  color: #333;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+header {
+  background: #0f4c81;
+  color: #fff;
+  padding: 24px 24px;
+  box-shadow: 0 8px 24px rgba(15, 76, 129, 0.18);
+  margin-bottom: 24px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+nav {
+  margin-top: 16px;
+}
+
+nav a {
+  display: inline-block;
+  margin-right: 18px;
+  color: #dbe9ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+main {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(31, 42, 55, 0.08);
+  padding: 30px;
+}
+
+h1,
+h2 {
+  color: #0b2640;
+}
+
+p,
+ul,li,label {
+  line-height: 1.7;
+}
+
+ul {
+  padding-left: 1.4rem;
+}
+
+a {
+  color: #1b6ca8;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button,
+input[type="submit"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: #0f4c81;
+  color: #fff;
+  padding: 0.8rem 1.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+button:hover,
+input[type="submit"]:hover {
+  background: #0d416f;
+}
+
+form div {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  font-size: 1rem;
+  background: #f8fbff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  background: #f8fbff;
+  border: 1px solid #e2e9f4;
+  border-radius: 18px;
+  padding: 20px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.card p {
+  margin: 0.6rem 0;
+}
+
+.notice {
+  background: #eef6ff;
+  border-left: 4px solid #0f4c81;
+  padding: 18px 20px;
+  border-radius: 12px;
+  margin-bottom: 24px;
+}
+
+footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #5e6d7a;
+}

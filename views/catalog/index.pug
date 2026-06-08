@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  h1= title
+  p Welcome to the Local Library website.
+  ul
+    li Total books: #{data.book_count}
+    li Total book instances: #{data.book_instance_count}
+    li Available book instances: #{data.book_instance_available_count}
+    li Total authors: #{data.author_count}
+    li Total genres: #{data.genre_count}
+  h2 Browse
+  ul
+    li: a(href='/catalog/books') Books
+    li: a(href='/catalog/authors') Authors
+    li: a(href='/catalog/genres') Genres
+    li: a(href='/catalog/bookinstances') Book Instances
